@@ -1,4 +1,4 @@
-# saffy server api doc
+# rustywiki server api doc
 
 with swagger.
 
