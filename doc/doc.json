@@ -33,33 +33,56 @@
     ],
     "tags": [
         {
+            "name": "auth",
+            "description": "인증 관련"
+        },
+        {
             "name": "document",
-            "description": "문서 작성 기능"
+            "description": "문서 관련"
         }
     ],
     "paths": {
-        "/document": {
+        "/auth/signup": {
             "post": {
-                "tags": ["document"],
+                "tags": ["auth"],
                 "summary": "회원가입입니다.",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "id",
+                        "name": "email",
                         "required": true,
                         "type": "string",
                         "description": "사용자 아이디(이메일)"
+                    },
+                    {
+                        "in": "body",
+                        "name": "password",
+                        "required": true,
+                        "type": "string",
+                        "description": "사용자 패스워드"
+                    },
+                    {
+                        "in": "body",
+                        "name": "nickname",
+                        "required": true,
+                        "type": "string",
+                        "description": "닉네임. (30자 이하)"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "success=성공. email_duplicated=이메일중복. message=메세지",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/Response/JustSuccess"
+                                    "type": "object",
+                                    "example": {
+                                        "success": true, 
+                                        "email_duplicated": false,
+                                        "message": ""
+                                    }
                                 }
                             }
                         }
@@ -69,17 +92,19 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/Response/JustFailed"
+                                    "type": "object",
+                                    "example": {}
                                 }
                             }
                         }
                     },
-                    "403": {
+                    "500": {
                         "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/Response/JustFailed"
+                                    "type": "object",
+                                    "example": {}
                                 }
                             }
                         }
@@ -87,89 +112,41 @@
                 }
             }
         },
-        "/v1/auth/users/{user_id}": {
-            "get": {
+        "/auth/login": {
+            "post": {
                 "tags": ["auth"],
                 "summary": "로그인입니다.",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "user_id",
-                        "required": true,
-                        "type": "string",
-                        "description": "사용자 아이디(이메일)"
-                    },
-                    {
-                        "in": "query",
-                        "name": "key",
-                        "required": true,
-                        "type": "string",
-                        "description": "암호화된 패스워드"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/Response/LoginSuccess"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Parameter",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/Response/JustFailed"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/Response/JustFailed"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": ["auth"],
-                "summary": "프로필 변경",
-                "consumes": ["application/json"],
-                "produces": ["application/json"],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "user_id",
+                        "in": "body",
+                        "name": "email",
                         "required": true,
                         "type": "string",
                         "description": "사용자 아이디(이메일)"
                     },
                     {
                         "in": "body",
-                        "name": "files",
+                        "name": "password",
                         "required": true,
-                        "type": "multipart",
-                        "description": "이미지 파일"
+                        "type": "string",
+                        "description": "패스워드"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "success=성공. login_failed=로그인실패. token=인증토큰. message=메세지",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/Response/JustSuccess"
+                                    "type": "object",
+                                    "example": {
+                                        "success": true, 
+                                        "login_failed": false,
+                                        "token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
+                                        "message": "foobar"
+                                    }
                                 }
                             }
                         }
@@ -179,17 +156,19 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/Response/JustFailed"
+                                    "type": "object",
+                                    "example": {}
                                 }
                             }
                         }
                     },
-                    "403": {
+                    "500": {
                         "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/Response/JustFailed"
+                                    "type": "object",
+                                    "example": {}
                                 }
                             }
                         }
@@ -205,28 +184,6 @@
                 "success": {
                     "type": "boolean",
                     "example": true
-                }
-            }
-        },
-        "JustFailed": {
-            "type": "object",
-            "properties": {
-                "success": {
-                    "type": "boolean",
-                    "example": false
-                }
-            }
-        },
-        "LoginSuccess": {
-            "type": "object",
-            "properties": {
-                "success": {
-                    "type": "boolean",
-                    "example": true
-                },
-                "token": {
-                    "type": "string",
-                    "example": "eyJhbGciOiJIU……"
                 }
             }
         }
