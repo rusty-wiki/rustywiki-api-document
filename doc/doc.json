@@ -37,6 +37,10 @@
             "description": "인증 관련"
         },
         {
+            "name": "image",
+            "description": "이미지 관련"
+        },
+        {
             "name": "document",
             "description": "문서 관련"
         }
@@ -153,6 +157,73 @@
                     },
                     "400": {
                         "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/image": {
+            "post": {
+                "tags": ["image"],
+                "summary": "이미지 업로드입니다. (인증 필요)",
+                "consumes": ["multipart/form-data"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "email",
+                        "required": true,
+                        "type": "file",
+                        "description": "사용자 아이디(이메일)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. image_url",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true, 
+                                        "image_id": 12,
+                                        "image_url": "/foo/bar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
