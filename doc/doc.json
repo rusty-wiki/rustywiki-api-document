@@ -37,6 +37,10 @@
             "description": "인증 관련"
         },
         {
+            "name": "user",
+            "description": "사용자 자신 정보 관련"
+        },
+        {
             "name": "image",
             "description": "이미지 관련"
         },
@@ -269,6 +273,103 @@
                                     "example": {
                                         "success": true,
                                         "message": "foobar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/my-info": {
+            "get": {
+                "tags": ["user"],
+                "summary": "사용자 자신 정보 조회",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. message=메세지. email=이메일. nickname=닉네임. reg_time=가입일시(UTC)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "message": "success",
+                                        "email": "foobar@naver.com",
+                                        "nickname": "asdf",
+                                        "reg_time": 12321432132
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/close-my-account": {
+            "delete": {
+                "tags": ["user"],
+                "summary": "회원 탈퇴",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. message=메세지.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "message": "success"
                                     }
                                 }
                             }
