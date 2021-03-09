@@ -204,16 +204,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success=성공. login_failed=로그인실패. token=인증토큰. message=메세지",
+                        "description": "success=성공. expired=토큰 만료여부. access_token=액세스토큰. message=메세지",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
                                         "success": true,
-                                        "login_failed": false,
-                                        "token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
-                                        "message": "foobar"
+                                        "expired": false,
+                                        "access_token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
+                                        "message": "error"
                                     }
                                 }
                             }
@@ -261,15 +261,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success=성공. login_failed=로그인실패. token=인증토큰. message=메세지",
+                        "description": "success=성공. message=메세지",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
                                         "success": true,
-                                        "login_failed": false,
-                                        "token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
                                         "message": "foobar"
                                     }
                                 }
