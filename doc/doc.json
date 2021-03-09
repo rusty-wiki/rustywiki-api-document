@@ -41,7 +41,7 @@
             "description": "이미지 관련"
         },
         {
-            "name": "document",
+            "name": "doc",
             "description": "문서 관련"
         }
     ],
@@ -83,7 +83,7 @@
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "success": true, 
+                                        "success": true,
                                         "email_duplicated": false,
                                         "message": ""
                                     }
@@ -146,7 +146,128 @@
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "success": true, 
+                                        "success": true,
+                                        "login_failed": false,
+                                        "token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
+                                        "message": "foobar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": ["auth"],
+                "summary": "액세스 토큰 갱신입니다..",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "email",
+                        "required": true,
+                        "type": "string",
+                        "description": "사용자 아이디(이메일)"
+                    },
+                    {
+                        "in": "body",
+                        "name": "password",
+                        "required": true,
+                        "type": "string",
+                        "description": "패스워드"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. login_failed=로그인실패. token=인증토큰. message=메세지",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "login_failed": false,
+                                        "token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
+                                        "message": "foobar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "delete": {
+                "tags": ["auth"],
+                "summary": "로그아웃. 리프레시 토큰 삭제입니다.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "refresh_token",
+                        "required": true,
+                        "type": "string",
+                        "description": "리프레시 토큰"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. login_failed=로그인실패. token=인증토큰. message=메세지",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
                                         "login_failed": false,
                                         "token": "asdqwjehsxmqwiuz,ruwoqi,zrojwqe.crovw.eo",
                                         "message": "foobar"
@@ -203,7 +324,7 @@
                                 "schema": {
                                     "type": "object",
                                     "example": {
-                                        "success": true, 
+                                        "success": true,
                                         "image_id": 12,
                                         "image_url": "/foo/bar"
                                     }
