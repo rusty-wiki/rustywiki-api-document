@@ -255,7 +255,7 @@
         "/auth/logout": {
             "delete": {
                 "tags": ["auth"],
-                "summary": "로그아웃. 리프레시 토큰 삭제입니다.",
+                "summary": "로그아웃. 리프레시 토큰 삭제입니다. (인증 필요)",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [
@@ -310,7 +310,7 @@
         "/user/my-info": {
             "get": {
                 "tags": ["user"],
-                "summary": "사용자 자신 정보 조회",
+                "summary": "사용자 자신 정보 조회 (인증 필요)",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [],
