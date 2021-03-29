@@ -41,12 +41,16 @@
             "description": "사용자 자신 정보 관련"
         },
         {
-            "name": "image",
-            "description": "이미지 관련"
+            "name": "file",
+            "description": "파일 관련"
         },
         {
             "name": "doc",
             "description": "문서 관련"
+        },
+        {
+            "name": "search",
+            "description": "검색 관련"
         }
     ],
     "paths": {
@@ -185,7 +189,7 @@
             }
         },
         "/auth/refresh": {
-            "post": {
+            "put": {
                 "tags": ["auth"],
                 "summary": "액세스 토큰 갱신입니다..",
                 "consumes": ["application/json"],
@@ -400,10 +404,217 @@
                 }
             }
         },
-        "/image": {
+        "/doc/document": {
             "post": {
-                "tags": ["image"],
-                "summary": "이미지 업로드입니다. (인증 필요)",
+                "tags": ["doc"],
+                "summary": "문서 등록 및 수정입니다. (인증 필요)",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "title",
+                        "required": true,
+                        "type": "string",
+                        "description": "문서 제목"
+                    },
+                    {
+                        "in": "body",
+                        "name": "content",
+                        "required": true,
+                        "type": "string",
+                        "description": "문서 내용"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. is_new_doc=새로 등록된 문서인지",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "is_new_doc": true,
+                                        "message": "asdf"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["doc"],
+                "summary": "문서 조회입니다.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "title",
+                        "required": true,
+                        "type": "string",
+                        "description": "문서 제목"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. image_url",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "not_exists": false,
+                                        "title": "김문서",
+                                        "content": "내용",
+                                        "last_update_udc": 1232218198,
+                                        "message": "asdf"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/file": {
+            "post": {
+                "tags": ["file"],
+                "summary": "파일 업로드입니다. (미완성) (인증 필요)",
+                "consumes": ["multipart/form-data"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "email",
+                        "required": true,
+                        "type": "file",
+                        "description": "사용자 아이디(이메일)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. image_url",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "image_id": 12,
+                                        "image_url": "/foo/bar"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["file"],
+                "summary": "파일 수정입니다. (미완성) (인증 필요)",
                 "consumes": ["multipart/form-data"],
                 "produces": ["application/json"],
                 "parameters": [
