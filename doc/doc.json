@@ -407,7 +407,7 @@
         "/doc/document": {
             "post": {
                 "tags": ["doc"],
-                "summary": "문서 등록",
+                "summary": "문서 등록 (인증 필요)",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [
