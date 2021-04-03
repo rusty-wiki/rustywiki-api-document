@@ -607,29 +607,35 @@
             },
             "put": {
                 "tags": ["file"],
-                "summary": "파일 수정입니다. (미완성) (인증 필요)",
+                "summary": "파일 문서 내용 수정입니다. (인증 필요)",
                 "consumes": ["multipart/form-data"],
                 "produces": ["application/json"],
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "email",
+                        "name": "title",
                         "required": true,
-                        "type": "file",
-                        "description": "사용자 아이디(이메일)"
+                        "type": "string",
+                        "description": "파일 제목"
+                    },
+                    {
+                        "in": "body",
+                        "name": "content",
+                        "required": false,
+                        "type": "string",
+                        "description": "파일 내용"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "success=성공. image_url",
+                        "description": "success=성공. message=메세지",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
                                         "success": true,
-                                        "image_id": 12,
-                                        "image_url": "/foo/bar"
+                                        "message": ",..."
                                     }
                                 }
                             }
