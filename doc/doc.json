@@ -533,23 +533,38 @@
                 "parameters": [
                     {
                         "in": "body",
-                        "name": "email",
+                        "name": "file",
                         "required": true,
                         "type": "file",
-                        "description": "사용자 아이디(이메일)"
+                        "description": "파일 데이터"
+                    },
+                    {
+                        "in": "body",
+                        "name": "title",
+                        "required": true,
+                        "type": "string",
+                        "description": "파일 제목"
+                    },
+                    {
+                        "in": "body",
+                        "name": "content",
+                        "required": false,
+                        "type": "string",
+                        "description": "파일 내용"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "success=성공. image_url",
+                        "description": "success=성공. file_write_failed=파일쓰기 실패. file_too_big=파일사이즈 초과. title_duplicate=파일명 중복",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": {
                                         "success": true,
-                                        "image_id": 12,
-                                        "image_url": "/foo/bar"
+                                        "file_write_failed": false,
+                                        "file_too_big": false,
+                                        "title_duplicate": false
                                     }
                                 }
                             }
