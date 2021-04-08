@@ -675,6 +675,72 @@
                         }
                     }
                 }
+            },
+            "get": {
+                "tags": ["file"],
+                "summary": "파일 문서 내용 조회입니다. (미완성)",
+                "consumes": ["multipart/form-data"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "title",
+                        "required": true,
+                        "type": "string",
+                        "description": "파일 제목"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. message=메세지. filepath=파일 경로. content=파일 문서 내용",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {
+                                        "success": true,
+                                        "filepath": "/foo.jpg",
+                                        "content": "...",
+                                        "message": ",..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
