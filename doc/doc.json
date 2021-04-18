@@ -649,6 +649,60 @@
                 }
             }
         },
+        "/doc/history/rollback": {
+            "post": {
+                "tags": ["doc"],
+                "summary": "문서 히스토리 되돌리기",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "history_id",
+                        "required": true,
+                        "type": "string",
+                        "description": "히스토리 식별자"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": 
+                                        {"success":true,"message":""}
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/file": {
             "post": {
                 "tags": ["file"],
