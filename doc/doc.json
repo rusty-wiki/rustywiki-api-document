@@ -563,9 +563,63 @@
                                     "example": {
                                         "success": true,
                                         "list": [{"id":4,"content":"으악","char_count":2,"increase":0,"reg_utc":1617682504,"writer_id":1,"writer_name":"김불닭"},{"id":3,"content":"으악","char_count":2,"increase":-6,"reg_utc":1617682104,"writer_id":1,"writer_name":"김불닭"},{"id":2,"content":"내용222222","char_count":8,"increase":2,"reg_utc":1617682099,"writer_id":1,"writer_name":"김불닭"},{"id":1,"content":"내용2222","char_count":6,"increase":6,"reg_utc":1617682096,"writer_id":1,"writer_name":"김불닭"}],
-                                        "total_count": "문서제목",
+                                        "total_count": 4,
                                         "message": ""
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/doc/history/detail": {
+            "get": {
+                "tags": ["doc"],
+                "summary": "문서 히스토리 상세 조회",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "history_id",
+                        "required": true,
+                        "type": "string",
+                        "description": "히스토리 식별자"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. current_history=현재 히스토리. prev_history=비교용 이전 히스토리(nullable). id=히스토리 식별자. content=히스토리 내용. char_count=글자수. increase=증가수. reg_utc=등록일자. writer_id=작성자 식별자. writer_name=작성자 이름.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": 
+                                        {"success":true,"current_history":{"id":4,"content":"으악asfdqwdqwdqw22","char_count":16,"increase":2,"reg_utc":1618724642,"writer_id":2,"writer_name":"김불닭"},"prev_history":{"id":3,"content":"으악asfdqwdqwdqw","char_count":14,"increase":14,"reg_utc":1618724639,"writer_id":2,"writer_name":"김불닭"},"message":""}
+                                    
                                 }
                             }
                         }
