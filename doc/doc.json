@@ -652,7 +652,7 @@
         "/doc/history/rollback": {
             "post": {
                 "tags": ["doc"],
-                "summary": "문서 히스토리 되돌리기",
+                "summary": "문서 히스토리 되돌리기 (인증 필요)",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [
@@ -673,6 +673,135 @@
                                     "type": "object",
                                     "example": 
                                         {"success":true,"message":""}
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/doc/debate": {
+            "post": {
+                "tags": ["doc"],
+                "summary": "문서 토론 생성하기 (인증 필요)",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "document_title",
+                        "required": true,
+                        "type": "string",
+                        "description": "문서 제목"
+                    },
+                    {
+                        "in": "body",
+                        "name": "subject",
+                        "required": true,
+                        "type": "string",
+                        "description": "토론 주제"
+                    },
+                    {
+                        "in": "body",
+                        "name": "content",
+                        "required": true,
+                        "type": "string",
+                        "description": "토론 내용"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. debate_id=생성한 토론 식별자.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": 
+                                        {"success":true,"debate_id": 1, "message":""}
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/doc/debate/comment": {
+            "post": {
+                "tags": ["doc"],
+                "summary": "문서 토론에 코멘트 작성하기 (인증 필요)",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "debate_id",
+                        "required": true,
+                        "type": "string",
+                        "description": "토론 식별자"
+                    },
+                    {
+                        "in": "body",
+                        "name": "content",
+                        "required": true,
+                        "type": "string",
+                        "description": "코멘트 내용"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. is_close_debate=토론이 닫힌 상태에서 시도했는지",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": 
+                                        {"success":true,"is_close_debate": false, "message":""}
                                     
                                 }
                             }
