@@ -524,7 +524,7 @@
                 }
             }
         },
-        "/doc/history": {
+        "/doc/history-list": {
             "get": {
                 "tags": ["doc"],
                 "summary": "문서 히스토리 목록 조회",
@@ -595,7 +595,7 @@
                 }
             }
         },
-        "/doc/history/detail": {
+        "/doc/history": {
             "get": {
                 "tags": ["doc"],
                 "summary": "문서 히스토리 상세 조회",
