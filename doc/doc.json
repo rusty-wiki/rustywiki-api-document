@@ -555,17 +555,12 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "success=성공. total_count=목록 전체 개수(페이지네이션용). list=조회목록. list.id=히스토리 식별자. list.content=히스토리 내용. list.char_count=히스토리 문자 개수. list.increase=히스토리 문자 증가치. list.reg_utc=등록일시. list.writer_id=작성자 식별자. list.writer_name=작성자 이름.",
+                        "description": "success=성공. total_count=목록 전체 개수(페이지네이션용). list=조회목록. list.id=히스토리 식별자. list.content=히스토리 내용. list.char_count=히스토리 문자 개수. list.increase=히스토리 문자 증가치. list.reg_utc=등록일시. list.revision_number=리비전 넘버. list.rollback_revision_number=롤백한 리비전 넘버. list.writer_id=작성자 식별자. list.writer_name=작성자 이름.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "example": {
-                                        "success": true,
-                                        "list": [{"id":4,"content":"으악","char_count":2,"increase":0,"reg_utc":1617682504,"writer_id":1,"writer_name":"김불닭"},{"id":3,"content":"으악","char_count":2,"increase":-6,"reg_utc":1617682104,"writer_id":1,"writer_name":"김불닭"},{"id":2,"content":"내용222222","char_count":8,"increase":2,"reg_utc":1617682099,"writer_id":1,"writer_name":"김불닭"},{"id":1,"content":"내용2222","char_count":6,"increase":6,"reg_utc":1617682096,"writer_id":1,"writer_name":"김불닭"}],
-                                        "total_count": 4,
-                                        "message": ""
-                                    }
+                                    "example": {"success":true,"list":[{"id":5,"content":"3","char_count":1,"increase":-1,"reg_utc":1619048645,"revision_number":5,"rollback_revision_number":3,"writer_id":1,"writer_name":"김불닭"},{"id":4,"content":"4","char_count":1,"increase":0,"reg_utc":1619048628,"revision_number":4,"rollback_revision_number":null,"writer_id":1,"writer_name":"김불닭"},{"id":3,"content":"3","char_count":1,"increase":0,"reg_utc":1619048625,"revision_number":3,"rollback_revision_number":null,"writer_id":1,"writer_name":"김불닭"},{"id":2,"content":"2","char_count":1,"increase":-15,"reg_utc":1619048624,"revision_number":2,"rollback_revision_number":null,"writer_id":1,"writer_name":"김불닭"},{"id":1,"content":"으악asfdqwdqwdqw22","char_count":16,"increase":16,"reg_utc":1619048621,"revision_number":1,"rollback_revision_number":null,"writer_id":1,"writer_name":"김불닭"}],"total_count":5,"message":""}
                                 }
                             }
                         }
