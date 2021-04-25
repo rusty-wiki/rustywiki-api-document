@@ -764,6 +764,79 @@
                         }
                     }
                 }
+            },
+            "get": {
+                "tags": ["doc"],
+                "summary": "문서 토론 조회하기",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "debate_id",
+                        "required": true,
+                        "type": "string",
+                        "description": "토론 식별자"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer",
+                        "description": "조회할 페이지(1 시작) (디폴트 1)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer",
+                        "description": "한번에 조회해올 페이지 크기. (디폴트 10)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "next_token",
+                        "required": false,
+                        "type": "string",
+                        "description": "다음 항목 조회용 토큰"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success=성공. debate=토론 내용. comment_list=토론 코멘트 목록. total_count=전체 목록 개수. has_next=다음페이지 존재여부. next_token=다음페이지 접근용 토큰. ",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": 
+                                    {"success":true,"debate":{"id":1,"writer_id":1,"writer_name":"김불닭","subject":"주제1","content":"내용1","reg_utc":1619251750},"comment_list":[{"id":5,"writer_id":1,"writer_name":"김불닭","content":"내용3","reg_utc":1619393228},{"id":4,"writer_id":1,"writer_name":"김불닭","content":"내용3","reg_utc":1619393228},{"id":3,"writer_id":1,"writer_name":"김불닭","content":"내용3","reg_utc":1619393226},{"id":2,"writer_id":1,"writer_name":"김불닭","content":"내용2","reg_utc":1619393224},{"id":1,"writer_id":1,"writer_name":"김불닭","content":"내용1","reg_utc":1619393221}],"total_count":5,"has_next":false,"next_token":"","message":""}
+                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Parameter",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "example": {}
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/doc/debate/comment": {
