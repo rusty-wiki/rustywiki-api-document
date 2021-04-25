@@ -861,17 +861,24 @@
                         "required": false,
                         "type": "integer",
                         "description": "한번에 조회해올 페이지 크기. (디폴트 10)"
+                    },
+                    {
+                        "in": "query",
+                        "name": "next_token",
+                        "required": false,
+                        "type": "string",
+                        "description": "다음 항목 조회용 토큰"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "success=성공. total_count=전체 목록 개수. list=토론 목록.",
+                        "description": "success=성공. total_count=전체 목록 개수. has_next=다음페이지 존재여부. next_token=다음페이지 접근용 토큰. list=토론 목록.",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "example": 
-                                    {"success":true,"list":[{"id":2,"writer_id":2,"writer_name":"김불닭","subject":"주제1","content":"내용1","reg_utc":1618875399},{"id":1,"writer_id":2,"writer_name":"김불닭","subject":"주제1","content":"내용1","reg_utc":1618791338}],"total_count":2,"message":"토론 등록 성공"}
+                                    {"success":true,"list":[{"id":2,"writer_id":2,"writer_name":"김불닭","subject":"주제1","content":"내용1","reg_utc":1618875399},{"id":1,"writer_id":2,"writer_name":"김불닭","subject":"주제1","content":"내용1","reg_utc":1618791338}],"total_count":2,"message":"토론 등록 성공", "has_next":false, "next_token":""}
                                     
                                 }
                             }
