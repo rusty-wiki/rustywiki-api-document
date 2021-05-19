@@ -27,10 +27,10 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm build
+      - run: git config --global user.email "sssang97@naver.com"
+      - run: git config --global user.name "myyrakle"
       - run: git branch release
       - run: git switch release
       - run: git add .
       - run: git commit -m "배포"
       - run: git push origin release
-      - run: git config --global user.email "sssang97@naver.com"
-      - run: git config --global user.name "myyrakle"
