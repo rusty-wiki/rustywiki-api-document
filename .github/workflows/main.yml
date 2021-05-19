@@ -30,7 +30,7 @@ jobs:
       - run: git config --global user.name "myyrakle"
       - run: git branch release
       - run: git switch release
-      - run: npm build
+      - run: npm run build
       - run: git add .
       - run: git commit -m "배포"
       - run: git push origin release
