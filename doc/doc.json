@@ -530,7 +530,7 @@
         "/doc/search": {
             "get": {
                 "tags": ["search"],
-                "summary": "문서 검색. (미완성)",
+                "summary": "문서 검색. (제목만)",
                 "consumes": ["application/json"],
                 "produces": ["application/json"],
                 "parameters": [
@@ -552,7 +552,7 @@
                                     "type": "object",
                                     "example": {
                                         "success": true,
-                                        "search_list": ["foo"],
+                                        "search_list": ["foo", "테스트문서"],
                                         "message": "foobar"
                                     }
                                 }
