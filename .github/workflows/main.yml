@@ -33,5 +33,4 @@ jobs:
       - run: npm run build
       - run: git add .
       - run: git commit -m "배포"
-      - run: git pull
       - run: git push origin release
