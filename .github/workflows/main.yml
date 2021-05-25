@@ -28,9 +28,10 @@ jobs:
       - run: npm install
       - run: git config --global user.email "sssang97@naver.com"
       - run: git config --global user.name "myyrakle"
+      - run: git branch release
       - run: git switch release
       - run: npm run build
       - run: git add .
       - run: git commit -m "배포"
-      - run: git pull origin release
+      - run: git pull
       - run: git push origin release
