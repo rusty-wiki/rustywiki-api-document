@@ -33,5 +33,6 @@ npm start
 ##
 
 
+## 깃헙페이지 배포링크
 
-https://myyrakle.github.io/rustywiki-api-document/
+https://rusty-wiki.github.io/rustywiki-api-document/
